@@ -6,7 +6,7 @@ pages_build_output_dir = "out"
 [[d1_databases]]
 binding = "DB"
 database_name = "kinh-mat-db"
-database_id = "YOUR_DATABASE_ID_HERE" # Will be filled after creating D1 database
+database_id = "fb903c1a-51b2-466f-8c09-355598194777"
 
 # Environment variables (optional)
 [vars]
