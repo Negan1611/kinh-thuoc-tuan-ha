@@ -1,3 +1,5 @@
+/// <reference types="@cloudflare/workers-types" />
+
 // Cloudflare Environment Interface
 interface CloudflareEnv {
     DB: D1Database;
