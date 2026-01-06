@@ -7,12 +7,6 @@ import { notFound } from 'next/navigation';
 
 export const runtime = 'edge';
 
-export async function generateStaticParams() {
-    return categories.map((category) => ({
-        category: category.id,
-    }));
-}
-
 export default async function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
     const { category: categorySlug } = await params;
     const category = categories.find((c) => c.id === categorySlug);
