@@ -37,18 +37,34 @@
 - [x] **Cloudflare Binding:** Configure `wrangler.toml` for D1 DB `kinh-mat-db` (manual creation required).
 - [x] **Schema:** Define `products` and `orders` tables in `src/db/schema.ts`.
 
-### Phase 2: UI Components & Layout (Completed)
+### Phase 2: UI Components & Layout ✅ (Completed)
 - [x] **Assets:** Setup Fonts (Be Vietnam Pro), Colors (Royal Blue).
 - [x] **Layout:** Header (Mega Menu), Footer (4 cols), Mobile Menu.
+- [x] **Global Layout:** Header & Footer moved to `layout.tsx` for all pages.
 - [x] **Components:** ProductCard với badges và price formatting.
-- [x] **Home Sections:** Hero (gradient background), Category (3 cards), Featured Products.
+- [x] **Home Sections:** Hero Banner (carousel), Category Grid, Featured Products.
 - [x] **Responsive:** Mobile-first design với breakpoints tối ưu.
 
-### Phase 3: Product Pages & Database Integration (Next)
-- [ ] **Product Listing:** Trang danh sách sản phẩm với filters.
-- [ ] **Product Detail:** Trang chi tiết sản phẩm.
-- [ ] **Database:** Kết nối Cloudflare D1 và seed data.
-- [ ] **API Routes:** Tạo API endpoints cho products và orders.
+### Phase 3: Product Pages & Database Integration ✅ (Completed)
+- [x] **SEO-Friendly URLs:** Restructured routes to Vietnamese no-accent format:
+  - `/san-pham` - All products listing/search
+  - `/[category]` - Category landing pages (e.g., `/gong-kinh`)
+  - `/[category]/[slug]` - Product detail pages (e.g., `/gong-kinh/rayban-aviator`)
+  - `/lien-he` - Contact page
+  - `/cua-hang` - Store locations
+- [x] **Product Listing:** Trang danh sách sản phẩm với filters và search.
+- [x] **Product Detail:** Trang chi tiết sản phẩm với image gallery, related products.
+- [x] **Category Pages:** Dynamic category landing pages với banner và filters.
+- [x] **Database Schema:** D1 schema với `products` và `orders` tables.
+- [x] **Seed API:** `/api/seed` route để migrate mock data vào D1.
+- [x] **Mock Data:** 16 sản phẩm mẫu với slugs và categories.
+
+### Phase 4: E-commerce Features (Next)
+- [ ] **Shopping Cart:** Client-side cart với localStorage.
+- [ ] **Checkout Flow:** Form đặt hàng và xác nhận.
+- [ ] **API Routes:** GET/POST endpoints cho products và orders từ D1.
+- [ ] **Admin Panel:** Quản lý sản phẩm và đơn hàng (optional).
+- [ ] **Search Enhancement:** Full-text search với filters nâng cao.
 
 ## 5. Domain Modeling (Drizzle Schema)
 **File: `src/db/schema.ts`**
