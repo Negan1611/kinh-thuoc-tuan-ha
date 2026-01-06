@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 const beVietnamPro = Be_Vietnam_Pro({
     subsets: ["vietnamese", "latin"],
@@ -27,7 +29,13 @@ export default function RootLayout({
     return (
         <html lang="vi">
             <body className={`${beVietnamPro.variable} font-sans antialiased`}>
-                {children}
+                <div className="min-h-screen flex flex-col">
+                    <Header />
+                    <main className="flex-grow">
+                        {children}
+                    </main>
+                    <Footer />
+                </div>
             </body>
         </html>
     );

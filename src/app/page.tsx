@@ -1,5 +1,3 @@
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
 import HeroBanner from '@/components/home/HeroBanner';
 // import ServiceHighlights from '@/components/home/ServiceHighlights';
 import CategoryGrid from '@/components/home/CategoryGrid';
@@ -29,70 +27,61 @@ export default function Home() {
     ];
 
     return (
-        <div className="min-h-screen flex flex-col">
-            <Header />
+        <div className="w-full bg-gray-50">
+            <div className="max-w-[1400px] mx-auto">
+                {/* Hero Carousel */}
+                <HeroBanner />
 
-            {/* Main Container với max-width - MatViet Style */}
-            <div className="w-full bg-gray-50">
-                <div className="max-w-[1400px] mx-auto">
-                    {/* Hero Carousel */}
-                    <HeroBanner />
+                {/* Service Highlights / USP Bar - Tạm ẩn */}
+                {/* <ServiceHighlights /> */}
 
-                    <main className="flex-grow">
-                        {/* Service Highlights / USP Bar - Tạm ẩn */}
-                        {/* <ServiceHighlights /> */}
+                {/* Category Grid - Tạm ẩn */}
+                {/* <CategoryGrid /> */}
 
-                        {/* Category Grid - Tạm ẩn */}
-                        {/* <CategoryGrid /> */}
+                {/* Quick Search Bar */}
+                <QuickSearch />
 
-                        {/* Quick Search Bar */}
-                        <QuickSearch />
+                {/* Product Category Sections */}
 
-                        {/* Product Category Sections */}
+                {/* 1. Gọng Kính */}
+                <ProductCategorySection
+                    title="Gọng Kính"
+                    subCategories={gongKinhSubCategories}
+                    products={trendingFrames}
+                    categorySlug="gong-kinh"
+                />
 
-                        {/* 1. Gọng Kính */}
-                        <ProductCategorySection
-                            title="Gọng Kính"
-                            subCategories={gongKinhSubCategories}
-                            products={trendingFrames}
-                            categorySlug="gong-kinh"
-                        />
-
-                        {/* 2. Kính Mát */}
-                        <div className="bg-gray-50">
-                            <ProductCategorySection
-                                title="Kính Mát"
-                                subCategories={[]}
-                                products={sunglasses}
-                                categorySlug="kinh-mat"
-                            />
-                        </div>
-
-                        {/* 3. Tròng Kính */}
-                        <ProductCategorySection
-                            title="Tròng Kính"
-                            subCategories={trongKinhSubCategories}
-                            products={newArrivals}
-                            categorySlug="trong-kinh"
-                        />
-
-                        {/* 4. Kính Áp Tròng */}
-                        <div className="bg-gray-50">
-                            <ProductCategorySection
-                                title="Kính Áp Tròng"
-                                subCategories={[]}
-                                products={newArrivals.slice(0, 8)}
-                                categorySlug="kinh-ap-trong"
-                            />
-                        </div>
-
-                        {/* Brand Logos Carousel */}
-                        <BrandLogos />
-                    </main>
+                {/* 2. Kính Mát */}
+                <div className="bg-gray-50">
+                    <ProductCategorySection
+                        title="Kính Mát"
+                        subCategories={[]}
+                        products={sunglasses}
+                        categorySlug="kinh-mat"
+                    />
                 </div>
-            </div>
 
-            <Footer />
+                {/* 3. Tròng Kính */}
+                <ProductCategorySection
+                    title="Tròng Kính"
+                    subCategories={trongKinhSubCategories}
+                    products={newArrivals}
+                    categorySlug="trong-kinh"
+                />
+
+                {/* 4. Kính Áp Tròng */}
+                <div className="bg-gray-50">
+                    <ProductCategorySection
+                        title="Kính Áp Tròng"
+                        subCategories={[]}
+                        products={newArrivals.slice(0, 8)}
+                        categorySlug="kinh-ap-trong"
+                    />
+                </div>
+
+                {/* Brand Logos Carousel */}
+                <BrandLogos />
+            </div>
         </div>
     );
 }
