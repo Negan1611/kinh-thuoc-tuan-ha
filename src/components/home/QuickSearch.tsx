@@ -11,7 +11,7 @@ export default function QuickSearch() {
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
         if (query.trim()) {
-            router.push(`/products?search=${encodeURIComponent(query)}`);
+            router.push(`/san-pham?q=${encodeURIComponent(query)}`);
         }
     };
 

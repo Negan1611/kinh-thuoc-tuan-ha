@@ -21,10 +21,10 @@ export default function Header() {
 
     const navigation = [
         { name: 'Trang chủ', href: '/' },
-        { name: 'Gọng kính', href: '/products?category=gong-kinh' },
-        { name: 'Kính mát', href: '/products?category=kinh-mat' },
-        { name: 'Tròng kính', href: '/products?category=trong-kinh' },
-        { name: 'Kính áp tròng', href: '/products?category=kinh-ap-trong' },
+        { name: 'Gọng kính', href: '/gong-kinh' },
+        { name: 'Kính mát', href: '/kinh-mat' },
+        { name: 'Tròng kính', href: '/trong-kinh' },
+        { name: 'Kính áp tròng', href: '/kinh-ap-trong' },
         { name: 'Thương hiệu', href: '/brands' },
         { name: 'Blogs', href: '/blogs' },
         { name: 'Khuyến mãi', href: '/promotions' },
@@ -74,7 +74,7 @@ export default function Header() {
                             </button>
 
                             <Link
-                                href="/stores"
+                                href="/cua-hang"
                                 className="flex items-center space-x-2 text-white hover:text-blue-200 transition-colors"
                                 aria-label="Hệ thống cửa hàng"
                             >
@@ -217,7 +217,7 @@ export default function Header() {
                             <button className="text-gray-600 hover:text-blue-600" aria-label="Tìm kiếm">
                                 <Search className="w-5 h-5" />
                             </button>
-                            <Link href="/stores" className="text-gray-600 hover:text-blue-600" aria-label="Cửa hàng">
+                            <Link href="/cua-hang" className="text-gray-600 hover:text-blue-600" aria-label="Cửa hàng">
                                 <MapPin className="w-5 h-5" />
                             </Link>
                             <Link href="/cart" className="text-gray-600 hover:text-blue-600 relative" aria-label="Giỏ hàng">

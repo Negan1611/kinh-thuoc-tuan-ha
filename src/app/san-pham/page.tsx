@@ -56,6 +56,7 @@ function ProductList() {
                             price={product.price}
                             image={product.image}
                             category={product.category}
+                            slug={product.slug}
                             inStock={true}
                             badge={product.isNew ? 'new' : product.isSale ? 'sale' : undefined}
                         />

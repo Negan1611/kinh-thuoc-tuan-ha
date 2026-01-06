@@ -6,6 +6,7 @@ interface ProductCardProps {
     price: number;
     image: string;
     category: string;
+    slug?: string;
     inStock: boolean;
     badge?: 'new' | 'sale' | 'out-of-stock';
 }
@@ -16,9 +17,12 @@ export default function ProductCard({
     price,
     image,
     category,
+    slug,
     inStock,
     badge,
 }: ProductCardProps) {
+    // Fallback to id if slug is missing (though it should be present now)
+    const productLink = slug ? `/${category}/${slug}` : `/${category}/san-pham-${id}`;
     const formatPrice = (price: number) => {
         return new Intl.NumberFormat('vi-VN', {
             style: 'currency',
@@ -54,7 +58,7 @@ export default function ProductCard({
 
     return (
         <div className="group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            <Link href={`/products/${id}`}>
+            <Link href={productLink}>
                 {/* Image Container */}
                 <div className="relative aspect-square overflow-hidden bg-gray-100">
                     <img
