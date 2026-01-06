@@ -15,7 +15,9 @@
     "db:migrate": "wrangler d1 migrations apply kinh-mat-db --local",
     "db:migrate:prod": "wrangler d1 migrations apply kinh-mat-db --remote",
     "db:studio": "drizzle-kit studio",
-    "seed": "tsx scripts/seed.ts"
+    "seed": "tsx scripts/seed.ts",
+    "seed:sql": "tsx scripts/generate-seed-sql.ts",
+    "seed:prod": "npm run seed:sql && wrangler d1 execute kinh-mat-db --remote --file=scripts/seed.sql"
   },
   "dependencies": {
     "@cloudflare/next-on-pages": "^1.13.0",
