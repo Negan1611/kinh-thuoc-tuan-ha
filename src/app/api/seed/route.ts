@@ -5,19 +5,21 @@ import { mockProducts } from '@/lib/mock-data';
 
 export const runtime = 'edge';
 
-export async function GET(request: Request) {
-    try {
-        // Get D1 database from Cloudflare environment
-        const env = (request as any).env;
+interface CloudflareEnv {
+    DB: D1Database;
+}
 
-        if (!env?.DB) {
+export async function GET(request: Request, context: { env: CloudflareEnv }) {
+    try {
+        // Get D1 database from Cloudflare context
+        if (!context?.env?.DB) {
             return NextResponse.json(
                 { success: false, error: 'D1 Database not found in environment' },
                 { status: 500 }
             );
         }
 
-        const db = getDB(env.DB);
+        const db = getDB(context.env.DB);
 
         // Step 1: Clear existing data
         await db.delete(products);
@@ -53,6 +55,7 @@ export async function GET(request: Request) {
             {
                 success: false,
                 error: error instanceof Error ? error.message : 'Unknown error',
+                stack: error instanceof Error ? error.stack : undefined,
             },
             { status: 500 }
         );
