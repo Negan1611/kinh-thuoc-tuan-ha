@@ -189,28 +189,28 @@ export const categories: Category[] = [
         name: 'Gọng Kính',
         description: 'Đa dạng mẫu mã, chất liệu cao cấp',
         image: 'https://placehold.co/400x400/3b82f6/white?text=Gong+Kinh',
-        link: '/products?category=gong-kinh',
+        link: '/danh-muc/gong-kinh',
     },
     {
         id: 'trong-kinh',
         name: 'Tròng Kính',
         description: 'Chống ánh sáng xanh, chống UV',
         image: 'https://placehold.co/400x400/1e40af/white?text=Trong+Kinh',
-        link: '/products?category=trong-kinh',
+        link: '/danh-muc/trong-kinh',
     },
     {
         id: 'kinh-mat',
         name: 'Kính Mát',
         description: 'Thời trang, bảo vệ mắt tối ưu',
         image: 'https://placehold.co/400x400/2563eb/white?text=Kinh+Mat',
-        link: '/products?category=kinh-mat',
+        link: '/danh-muc/kinh-mat',
     },
     {
         id: 'kinh-ap-trong',
         name: 'Kính Áp Tròng',
         description: 'Tiện lợi, thoải mái cả ngày',
         image: 'https://placehold.co/400x400/1d4ed8/white?text=Kinh+Ap+Trong',
-        link: '/products?category=kinh-ap-trong',
+        link: '/danh-muc/kinh-ap-trong',
     },
 ];
 

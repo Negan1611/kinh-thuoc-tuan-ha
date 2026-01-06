@@ -34,7 +34,7 @@ export default function ProductCategorySection({
                         <span className="absolute -bottom-2.5 left-0 w-full h-[2px] bg-primary-600"></span>
                     </h2>
                     <Link
-                        href={`/products?category=${categorySlug}`}
+                        href={`/danh-muc/${categorySlug}`}
                         className="text-primary-600 hover:text-primary-700 font-medium flex items-center space-x-1"
                     >
                         <span>Xem thêm</span>
@@ -95,7 +95,7 @@ export default function ProductCategorySection({
                 {/* View All Button - Mobile */}
                 <div className="mt-8 text-center md:hidden">
                     <Link
-                        href={`/products?category=${categorySlug}`}
+                        href={`/danh-muc/${categorySlug}`}
                         className="inline-block px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
                     >
                         Xem tất cả
