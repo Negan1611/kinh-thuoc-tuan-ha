@@ -4,7 +4,7 @@ import { ChevronRight } from 'lucide-react';
 export default function StorePage() {
     return (
         <div className="bg-gray-50 min-h-screen">
-            <div className="container-custom py-8">
+            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 {/* Breadcrumb */}
                 <nav className="flex items-center text-sm text-gray-500 mb-8">
                     <Link href="/" className="hover:text-primary-600">Trang chủ</Link>

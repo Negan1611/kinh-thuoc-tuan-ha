@@ -31,12 +31,12 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                 </nav>
 
                 {/* Banner / Header */}
-                <div className="relative rounded-2xl overflow-hidden mb-8 shadow-lg bg-primary-900 aspect-[4/1]">
+                <div className="relative rounded-2xl overflow-hidden mb-8 shadow-lg bg-primary-900 aspect-[3/1] md:aspect-[5/1]">
                     {/* Placeholder background since we don't have real category banners yet */}
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-900 to-primary-700 opacity-90" />
-                    <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-16 text-white">
-                        <h1 className="text-3xl md:text-5xl font-bold mb-4">{category.name}</h1>
-                        <p className="text-lg md:text-xl text-primary-100 max-w-2xl">{category.description}</p>
+                    <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-16 text-white">
+                        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4">{category.name}</h1>
+                        <p className="text-sm md:text-lg lg:text-xl text-primary-100 max-w-2xl">{category.description}</p>
                     </div>
                 </div>
 
