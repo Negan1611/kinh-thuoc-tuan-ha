@@ -11,14 +11,17 @@ export async function GET() {
         // Get D1 database from Cloudflare context
         const { env } = getRequestContext();
 
-        if (!env?.DB) {
+        // Type assertion for D1 database binding
+        const DB = (env as any).DB as D1Database;
+
+        if (!DB) {
             return NextResponse.json(
                 { success: false, error: 'D1 Database not found in environment' },
                 { status: 500 }
             );
         }
 
-        const db = getDB(env.DB);
+        const db = getDB(DB);
 
         // Step 1: Clear existing data
         await db.delete(products);
