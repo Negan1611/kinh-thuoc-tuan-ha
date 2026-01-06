@@ -1,25 +1,24 @@
 import { NextResponse } from 'next/server';
+import { getRequestContext } from '@cloudflare/next-on-pages';
 import { getDB } from '@/db';
 import { products } from '@/db/schema';
 import { mockProducts } from '@/lib/mock-data';
 
 export const runtime = 'edge';
 
-interface CloudflareEnv {
-    DB: D1Database;
-}
-
-export async function GET(request: Request, context: { env: CloudflareEnv }) {
+export async function GET() {
     try {
         // Get D1 database from Cloudflare context
-        if (!context?.env?.DB) {
+        const { env } = getRequestContext();
+
+        if (!env?.DB) {
             return NextResponse.json(
                 { success: false, error: 'D1 Database not found in environment' },
                 { status: 500 }
             );
         }
 
-        const db = getDB(context.env.DB);
+        const db = getDB(env.DB);
 
         // Step 1: Clear existing data
         await db.delete(products);
