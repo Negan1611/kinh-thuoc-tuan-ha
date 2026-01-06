@@ -4,12 +4,23 @@ import CategoryGrid from '@/components/home/CategoryGrid';
 import QuickSearch from '@/components/home/QuickSearch';
 import ProductCategorySection from '@/components/home/ProductCategorySection';
 import BrandLogos from '@/components/home/BrandLogos';
-import { getNewArrivals, getTrendingFrames, getSunglasses } from '@/lib/mock-data';
+import { getAllProducts } from '@/lib/db-client';
 
-export default function Home() {
-    const newArrivals = getNewArrivals();
-    const trendingFrames = getTrendingFrames();
-    const sunglasses = getSunglasses();
+export const runtime = 'edge';
+
+export default async function Home() {
+    // Fetch all products from D1
+    let allProducts: any[] = [];
+    try {
+        allProducts = await getAllProducts();
+    } catch (error) {
+        console.error('Failed to fetch products:', error);
+    }
+
+    // Filter products for different sections
+    const newArrivals = allProducts.filter((p: any) => p.attributes?.isNew).slice(0, 8);
+    const trendingFrames = allProducts.filter((p: any) => p.category === 'GONG_KINH').slice(0, 8);
+    const sunglasses = allProducts.filter((p: any) => p.category === 'KINH_MAT').slice(0, 8);
 
     // Sub-categories cho từng nhóm sản phẩm
     const gongKinhSubCategories = [
@@ -32,12 +43,6 @@ export default function Home() {
                 {/* Hero Carousel */}
                 <HeroBanner />
 
-                {/* Service Highlights / USP Bar - Tạm ẩn */}
-                {/* <ServiceHighlights /> */}
-
-                {/* Category Grid - Tạm ẩn */}
-                {/* <CategoryGrid /> */}
-
                 {/* Quick Search Bar */}
                 <QuickSearch />
 
@@ -52,34 +57,30 @@ export default function Home() {
                 />
 
                 {/* 2. Kính Mát */}
-                <div className="bg-gray-50">
-                    <ProductCategorySection
-                        title="Kính Mát"
-                        subCategories={[]}
-                        products={sunglasses}
-                        categorySlug="kinh-mat"
-                    />
-                </div>
+                <ProductCategorySection
+                    title="Kính Mát"
+                    subCategories={[]}
+                    products={sunglasses}
+                    categorySlug="kinh-mat"
+                />
 
-                {/* 3. Tròng Kính */}
+                {/* 3. Sản Phẩm Mới */}
+                <ProductCategorySection
+                    title="Sản Phẩm Mới"
+                    subCategories={[]}
+                    products={newArrivals}
+                    categorySlug="san-pham"
+                />
+
+                {/* 4. Tròng Kính */}
                 <ProductCategorySection
                     title="Tròng Kính"
                     subCategories={trongKinhSubCategories}
-                    products={newArrivals}
+                    products={[]}
                     categorySlug="trong-kinh"
                 />
 
-                {/* 4. Kính Áp Tròng */}
-                <div className="bg-gray-50">
-                    <ProductCategorySection
-                        title="Kính Áp Tròng"
-                        subCategories={[]}
-                        products={newArrivals.slice(0, 8)}
-                        categorySlug="kinh-ap-trong"
-                    />
-                </div>
-
-                {/* Brand Logos Carousel */}
+                {/* Brand Logos */}
                 <BrandLogos />
             </div>
         </div>
