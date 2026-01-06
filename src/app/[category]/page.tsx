@@ -1,8 +1,11 @@
-import { mockProducts, categories, Product } from '@/lib/mock-data';
+import { categories } from '@/lib/mock-data';
+import { getProductsByCategory } from '@/lib/db-client';
 import ProductCard from '@/components/products/ProductCard';
 import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+
+export const runtime = 'edge';
 
 export async function generateStaticParams() {
     return categories.map((category) => ({
@@ -18,7 +21,13 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         notFound();
     }
 
-    const filteredProducts = mockProducts.filter((p) => p.category === categorySlug);
+    // Fetch products from D1
+    let filteredProducts: any[] = [];
+    try {
+        filteredProducts = await getProductsByCategory(categorySlug);
+    } catch (error) {
+        console.error('Failed to fetch products:', error);
+    }
 
     return (
         <div className="bg-gray-50 min-h-screen">
@@ -32,7 +41,6 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
 
                 {/* Banner / Header */}
                 <div className="relative rounded-2xl overflow-hidden mb-8 shadow-lg bg-primary-900 aspect-[3/1] md:aspect-[5/1]">
-                    {/* Placeholder background since we don't have real category banners yet */}
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-900 to-primary-700 opacity-90" />
                     <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-16 text-white">
                         <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4">{category.name}</h1>
@@ -40,10 +48,9 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                     </div>
                 </div>
 
-                {/* Filters Row (Simple implementation) */}
+                {/* Filters Row */}
                 <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200">
                     <p className="text-gray-600">Hiển thị {filteredProducts.length} sản phẩm</p>
-                    {/* Placeholder for complex filters */}
                     <div className="flex gap-2">
                         <select className="border-gray-300 rounded-md text-sm p-2 bg-white border outline-none focus:ring-2 focus:ring-primary-500">
                             <option>Mới nhất</option>
@@ -56,26 +63,23 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                 {/* Product Grid */}
                 {filteredProducts.length > 0 ? (
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        {filteredProducts.map((product) => (
+                        {filteredProducts.map((product: any) => (
                             <ProductCard
                                 key={product.id}
                                 id={product.id}
                                 name={product.name}
                                 price={product.price}
-                                image={product.image}
+                                image={product.images?.[0] || '/placeholder.jpg'}
                                 category={product.category}
                                 slug={product.slug}
-                                inStock={true}
-                                badge={product.isNew ? 'new' : product.isSale ? 'sale' : undefined}
+                                inStock={product.inStock}
+                                badge={product.attributes?.isNew ? 'new' : product.attributes?.isSale ? 'sale' : undefined}
                             />
                         ))}
                     </div>
                 ) : (
-                    <div className="text-center py-20 bg-white rounded-xl shadow-sm">
-                        <p className="text-xl text-gray-500">Chưa có sản phẩm nào trong danh mục này.</p>
-                        <Link href="/" className="text-primary-600 hover:underline mt-2 inline-block">
-                            Quay về trang chủ
-                        </Link>
+                    <div className="text-center py-12">
+                        <p className="text-lg text-gray-600">Đang cập nhật sản phẩm...</p>
                     </div>
                 )}
             </div>
