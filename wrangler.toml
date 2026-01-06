@@ -1,0 +1,13 @@
+name = "kinh-mat-tuan-ha"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = ".vercel/output/static"
+
+# D1 Database Binding
+[[d1_databases]]
+binding = "DB"
+database_name = "kinh-mat-db"
+database_id = "YOUR_DATABASE_ID_HERE" # Will be filled after creating D1 database
+
+# Environment variables (optional)
+[vars]
+ENVIRONMENT = "production"
